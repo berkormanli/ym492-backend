@@ -155,7 +155,7 @@ class BrainTumorModelManager:
             return "Error processing image", 0.0
         
         with self.mutex:
-            result = version_manager.current_version.model.predict(input_img)
+            result = version_manager.get_version(version_manager.current_version).model.predict(input_img)
             prediction_class = np.argmax(result, axis=1)[0]
             confidence = float(result[0][0])
 
