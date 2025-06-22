@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brain Tumor Detection</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .explanation {
+      margin-top: 10px;
+      font-size: 16px;
+      color: black;
+      padding: 0 20px;
+    }
+
+    .box {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      margin-right: 10px;
+      border: 2px solid black;
+    }
+
+    .box.green {
+      background-color: rgb(0, 200, 0);
+    }
+
+    .box.red {
+      background-color: rgb(255, 0, 0);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      justify-content: center;
+    }
+    .right {
+            width: 30%;
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-left: 4px solid gray;
+            border-bottom: 4px solid gray;
+            border-radius: 8px;
+        }
+
+        .right h3 {
+            margin-top: 0;
+            color: #b30000;
+        }
+
+        .result-text strong {
+            color: #b30000;
+        }
+  </style>
+</head>
+<body>
+
+  <h1>Upload new File</h1>
+  <form method="post" enctype="multipart/form-data">
+    <input type="file" name="file1">
+    <input type="submit">
+  </form>
+
+  <h2>Yüklenen Orijinal Görsel</h2>
+  <img style="width: 200px;" src="/uploads/output.jpg" alt="Original Image" />
+  {% if show_heatmap %}
+    <h2>Tahmini Tümörlü Bölge</h2>
+    <img style="width: 200px;" src="/static/output_marked.jpg" alt="Marked Image" />
+
+    <div class="explanation">
+        <h3>Renklerin Anlamı:</h3>
+        <div class="legend-item">
+        <span class="box green"></span>
+        <span>Tüm ilgi alanını kapsar</span>
+        </div>
+        <div class="legend-item">
+        <span class="box red"></span>
+        <span>Grad-CAM algoritmasının daha fazla dikkat ettiği bölgeleri kapsar.</span>
+        </div>
+    </div>
+    {% endif %}
+  
+  {% if result %}
+  <div class="right">
+      <h3>Analiz Sonucu</h3>
+      <div class="result-text">
+          {{ result|safe }}
+      </div>
+  </div>
+  {% endif %}
+</body>
+</html>

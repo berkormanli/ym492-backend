@@ -1,0 +1,3 @@
+id,timestamp,image_path,prediction,confidence,has_tumor,regions,model_used,processing_time
+pred-00bbd4a4,2025-06-21T18:13:06.107830,predictions\pred-00bbd4a4.jpg,No Brain Tumor,0.9985093474388123,false,0.15,[],model,0.39
+pred-33d7a802,2025-06-21T18:26:54.282445,predictions\pred-33d7a802.jpg,Yes Brain Tumor,0.016559666022658348,true,98.34,"[{""x"": 136, ""y"": 148, ""width"": 5, ""height"": 3}]",model,0.81
